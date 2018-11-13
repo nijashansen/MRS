@@ -26,12 +26,15 @@ public class FileReaderTester
     {
         MovieDAO movieDao = new MovieDAO();
         
+        
 //        List<Movie> allMovies = movieDao.getAllMovies();
 //        for (Movie allMovy : allMovies)
 //        {
 //            System.out.println(allMovy.getTitle());
 //        }
         
+          
+
 //        Movie id = movieDao.getMovie(2);
 //        System.out.println(id.getTitle());
         

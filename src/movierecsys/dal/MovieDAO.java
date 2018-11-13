@@ -16,8 +16,10 @@ import java.nio.charset.MalformedInputException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Stream;
@@ -123,9 +125,9 @@ public class MovieDAO
      *
      * @param movie The movie to delete.
      */
-    private void deleteMovie(Movie movie) throws IOException
+    public void deleteMovie(Movie movie) throws IOException
     {
-        String fileName = "Enter File Name";
+        String fileName = "movie_titles.txt";
 		String lineToRemove = "This line will be removed";	
 		try (Stream<String> stream = Files.lines(Paths.get(fileName))) {
 			stream.filter(line->!line.trim().equals(lineToRemove)).forEach(System.out::println);
@@ -138,9 +140,23 @@ public class MovieDAO
      *
      * @param movie The updated movie.
      */
-    private void updateMovie(Movie movie) 
+    private void updateMovie(Movie movie) throws IOException 
     {
-        //TODO Update movies
+        File tmp = new File("data/tmp_movies.txt");
+        List<Movie> allMovies = getAllMovies();
+        allMovies.removeIf((Movie t) -> t.getId() == movie.getId());
+        allMovies.add(movie);
+        Collections.sort(allMovies, (Movie o1, Movie o2) -> Integer.compare(o1.getId(), o2.getId()));
+        try(BufferedWriter bw = new BufferedWriter(new FileWriter(tmp)))
+        {
+            for (Movie mov : allMovies)
+            {
+                bw.write(mov.getId()+","+mov.getYear()+","+mov.getTitle());
+                bw.newLine();
+            }
+        }
+        Files.copy(tmp.toPath(), new File(MOVIE_SOURCE).toPath(), StandardCopyOption.REPLACE_EXISTING);
+        Files.delete(tmp.toPath());
     }
 
     /**
