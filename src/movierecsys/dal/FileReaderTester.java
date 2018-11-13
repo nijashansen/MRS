@@ -25,7 +25,17 @@ public class FileReaderTester
     public static void main(String[] args) throws IOException
     {
         MovieDAO movieDao = new MovieDAO();
-        Movie movie = movieDao.createMovie(1966, "Django"); //Only run this once, or you will get multiple entries!
-        System.out.println(movie);
+        
+//        List<Movie> allMovies = movieDao.getAllMovies();
+//        for (Movie allMovy : allMovies)
+//        {
+//            System.out.println(allMovy.getTitle());
+//        }
+        
+//        Movie id = movieDao.getMovie(2);
+//        System.out.println(id.getTitle());
+        
+        //Movie movie = movieDao.createMovie(2015, "Django unchained"); //Only run this once, or you will get multiple entries!
+        //System.out.println(movie);
     }
 }

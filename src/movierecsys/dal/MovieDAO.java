@@ -9,11 +9,13 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.charset.MalformedInputException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -121,9 +123,13 @@ public class MovieDAO
      *
      * @param movie The movie to delete.
      */
-    private void deleteMovie(Movie movie)
+    private void deleteMovie(Movie movie) throws IOException
     {
-        //TODO Delete movie
+        String fileName = "Enter File Name";
+		String lineToRemove = "This line will be removed";	
+		try (Stream<String> stream = Files.lines(Paths.get(fileName))) {
+			stream.filter(line->!line.trim().equals(lineToRemove)).forEach(System.out::println);
+    }
     }
 
     /**
@@ -132,7 +138,7 @@ public class MovieDAO
      *
      * @param movie The updated movie.
      */
-    private void updateMovie(Movie movie)
+    private void updateMovie(Movie movie) 
     {
         //TODO Update movies
     }
@@ -143,9 +149,34 @@ public class MovieDAO
      * @param id ID of the movie.
      * @return A Movie object.
      */
-    private Movie getMovie(int id)
+    public Movie getMovie(int id) throws IOException
     {
-        //TODO Get one Movie.
+        List<Movie> allMovies = new ArrayList<>();
+        String source = "data/movie_titles.txt";
+        File file = new File(source);
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) //Using a try with resources!
+        {
+            String line;
+            while ((line = reader.readLine()) != null)
+            {
+                if (!line.isEmpty())
+                {
+                    try
+                    {
+                        Movie mov = stringArrayToMovie(line);
+                        if (mov.getId() == id)
+                        {
+                           return mov;
+                        }
+                        
+                    } catch (Exception ex)
+                    {
+                        //Do nothing. Optimally we would log the error.
+                    }
+                }
+            }
+        }
         return null;
     }
 
