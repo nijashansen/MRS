@@ -127,11 +127,11 @@ public class MovieDAO
      */
     public void deleteMovie(Movie movie) throws IOException
     {
-        String fileName = "movie_titles.txt";
-		String lineToRemove = "This line will be removed";	
-		try (Stream<String> stream = Files.lines(Paths.get(fileName))) {
-			stream.filter(line->!line.trim().equals(lineToRemove)).forEach(System.out::println);
-    }
+        File tmp = new File("data/tmp_movies.txt");
+        List<Movie> allMovies = getAllMovies();
+        allMovies.removeIf((Movie t) -> t.getId() == movie.getId());
+        Files.copy(tmp.toPath(), new File(MOVIE_SOURCE).toPath(), StandardCopyOption.REPLACE_EXISTING);
+        Files.delete(tmp.toPath());
     }
 
     /**

@@ -26,6 +26,9 @@ public class FileReaderTester
     {
         MovieDAO movieDao = new MovieDAO();
         
+        Movie movie = new Movie(22, 2000, "pancake");
+        movieDao.deleteMovie(movie);
+        System.out.println("");
         
 //        List<Movie> allMovies = movieDao.getAllMovies();
 //        for (Movie allMovy : allMovies)
