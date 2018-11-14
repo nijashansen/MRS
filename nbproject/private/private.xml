@@ -3,8 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/bonde/OneDrive/Dokumenter/GitHub/MRS/src/movierecsys/dal/FileReaderTester.java</file>
             <file>file:/C:/Users/bonde/OneDrive/Dokumenter/GitHub/MRS/src/movierecsys/dal/MovieDAO.java</file>
+=======
+            <file>file:/C:/Users/Nijas%20Hansen/Documents/GitHub/MRS/src/movierecsys/dal/FileReaderTester.java</file>
+            <file>file:/C:/Users/Nijas%20Hansen/Documents/GitHub/MRS/src/movierecsys/dal/MovieDAO.java</file>
+>>>>>>> 33586b7900fb5a72c3e2954d4c4ab5f89f388ef7
         </group>
     </open-files>
 </project-private>

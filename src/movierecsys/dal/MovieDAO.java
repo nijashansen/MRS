@@ -127,11 +127,37 @@ public class MovieDAO
      */
     public void deleteMovie(Movie movie) throws IOException
     {
-        File tmp = new File("data/tmp_movies.txt");
-        List<Movie> allMovies = getAllMovies();
-        allMovies.removeIf((Movie t) -> t.getId() == movie.getId());
-        Files.copy(tmp.toPath(), new File(MOVIE_SOURCE).toPath(), StandardCopyOption.REPLACE_EXISTING);
-        Files.delete(tmp.toPath());
+        String tempFile = "temp.txt";
+        File oldFile = new File (MOVIE_SOURCE);
+        File newFile = new File (tempFile);
+        List<Movie> newMovieList = new ArrayList();
+        List<Movie> oldMovieList = getAllMovies();
+        try
+        {
+            for (int i = 0; i < oldMovieList.size(); i++)
+            {
+                if(oldMovieList.get(i).getId() != movie.getId())
+                {
+                    newMovieList.add(oldMovieList.get(i));
+                }
+            }
+            FileWriter fw = new FileWriter(tempFile);
+            BufferedWriter bw = new BufferedWriter(fw);
+            for (Movie move : newMovieList)
+            {
+                bw.write(move.getId() + "," + move.getYear() + "," + move.getTitle());
+                bw.newLine();
+            }
+            bw.flush();
+            bw.close();
+            oldFile.delete();
+            File dump = new File(MOVIE_SOURCE);
+            newFile.renameTo(dump);
+        }
+        catch(IOException e)
+                {
+                    System.out.println("Something went wrong");
+                }
     }
 
     /**
