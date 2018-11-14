@@ -6,7 +6,6 @@
 package movierecsys.dal;
 
 import java.io.IOException;
-import java.util.List;
 import movierecsys.be.Movie;
 
 /**
@@ -25,10 +24,10 @@ public class FileReaderTester
     public static void main(String[] args) throws IOException
     {
         MovieDAO movieDao = new MovieDAO();
+//         
+//        Movie movie = new Movie(17774, 2015, "Django unchained");
+//        movieDao.deleteMovie(movie);
         
-        Movie movie = new Movie(22, 2000, "pancake");
-        movieDao.deleteMovie(movie);
-        System.out.println("");
         
 //        List<Movie> allMovies = movieDao.getAllMovies();
 //        for (Movie allMovy : allMovies)
@@ -38,10 +37,10 @@ public class FileReaderTester
         
           
 
-//        Movie id = movieDao.getMovie(2);
+//        Movie id = movieDao.getMovie(17774);
 //        System.out.println(id.getTitle());
         
-        //Movie movie = movieDao.createMovie(2015, "Django unchained"); //Only run this once, or you will get multiple entries!
-        //System.out.println(movie);
+//        Movie movie = movieDao.createMovie(2015, "Django unchained"); //Only run this once, or you will get multiple entries!
+//        System.out.println(movie);
     }
 }
