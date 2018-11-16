@@ -10,11 +10,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.collections.FXCollections;
-import static javafx.collections.FXCollections.observableArrayList;
-import static javafx.collections.FXCollections.observableArrayList;
-import static javafx.collections.FXCollections.observableArrayList;
-import static javafx.collections.FXCollections.observableArrayList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
@@ -46,7 +41,7 @@ public class MovieRecController implements Initializable
     public void initialize(URL url, ResourceBundle rb)
     {
         MovieDAO movieDao = new MovieDAO();
-        //observableArrayList<Movie> list = new FXCollections.observableArrayList<>();
+        
         
     }
 
