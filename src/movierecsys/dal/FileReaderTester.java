@@ -25,7 +25,12 @@ public class FileReaderTester
     public static void main(String[] args) throws IOException
     {
         MovieDAO movieDao = new MovieDAO();
-        
+        Movie movie = new Movie(22, 0, "");
+        movieDao.deleteMovie(movie);
+        if ()
+        {
+            System.out.println("cannot find");
+        }
         
 //        List<Movie> allMovies = movieDao.getAllMovies();
 //        for (Movie allMovy : allMovies)
