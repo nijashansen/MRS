@@ -127,6 +127,7 @@ public class MovieDAO
     public void deleteMovie(Movie movie) throws IOException
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
         movie.getId();
         File tmp = new File("data/tmp_movies.txt");
         List<Movie> allMovies = getAllMovies();
@@ -166,6 +167,13 @@ public class MovieDAO
                     System.out.println("Something went wrong");
                 }
 >>>>>>> a1b1fd024a8f26d28ec2d9cfc71f7ae562502e5e
+=======
+        String fileName = "movie_titles.txt";
+		String lineToRemove = "This line will be removed";	
+		try (Stream<String> stream = Files.lines(Paths.get(fileName))) {
+			stream.filter(line->!line.trim().equals(lineToRemove)).forEach(System.out::println);
+    }
+>>>>>>> parent of c24de87... useless change
     }
 
     /**
@@ -228,7 +236,5 @@ public class MovieDAO
         }
         return null;
     }
-
-    
 
 }
