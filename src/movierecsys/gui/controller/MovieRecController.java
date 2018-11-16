@@ -5,12 +5,22 @@
  */
 package movierecsys.gui.controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import static javafx.collections.FXCollections.observableArrayList;
+import static javafx.collections.FXCollections.observableArrayList;
+import static javafx.collections.FXCollections.observableArrayList;
+import static javafx.collections.FXCollections.observableArrayList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import movierecsys.be.Movie;
+import movierecsys.dal.MovieDAO;
 
 /**
  *
@@ -29,13 +39,14 @@ public class MovieRecController implements Initializable
      * The TextField containing the query word.
      */
     @FXML
-    private ListView<?> lstMovies;
+    private ListView<Movie> lstMovies;
 
 
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-       
+        MovieDAO movieDao = new MovieDAO();
+        //observableArrayList<Movie> list = new FXCollections.observableArrayList<>();
         
     }
 

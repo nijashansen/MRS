@@ -37,6 +37,11 @@ public class Rating
         this.rating = rating;
     }
 
+    public Rating(String movie, int user, int id)
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     /**
      * Sets the rating to a new value. Only the constants of the Rating class
      * are allowed values.
@@ -77,5 +82,7 @@ public class Rating
     {
         return rating;
     }
+
+    
 
 }

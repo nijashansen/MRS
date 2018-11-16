@@ -43,8 +43,7 @@ public class MovieDAO
     public List<Movie> getAllMovies() throws IOException
     {
         List<Movie> allMovies = new ArrayList<>();
-        String source = "data/movie_titles.txt";
-        File file = new File(source);
+        File file = new File(MOVIE_SOURCE);
 
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) //Using a try with resources!
         {
@@ -127,12 +126,46 @@ public class MovieDAO
      */
     public void deleteMovie(Movie movie) throws IOException
     {
+<<<<<<< HEAD
         movie.getId();
         File tmp = new File("data/tmp_movies.txt");
         List<Movie> allMovies = getAllMovies();
         allMovies.removeIf((Movie t) -> t.getId() == movie.getId());
         Files.copy(tmp.toPath(), new File(MOVIE_SOURCE).toPath(), StandardCopyOption.REPLACE_EXISTING);
         Files.delete(tmp.toPath());
+=======
+        String tempFile = "temp.txt";
+        File oldFile = new File (MOVIE_SOURCE);
+        File newFile = new File (tempFile);
+        List<Movie> newMovieList = new ArrayList();
+        List<Movie> oldMovieList = getAllMovies();
+        try
+        {
+            for (int i = 0; i < oldMovieList.size(); i++)
+            {
+                if(oldMovieList.get(i).getId() != movie.getId())
+                {
+                    newMovieList.add(oldMovieList.get(i));
+                }
+            }
+            FileWriter fw = new FileWriter(tempFile);
+            BufferedWriter bw = new BufferedWriter(fw);
+            for (Movie move : newMovieList)
+            {
+                bw.write(move.getId() + "," + move.getYear() + "," + move.getTitle());
+                bw.newLine();
+            }
+            bw.flush();
+            bw.close();
+            oldFile.delete();
+            File dump = new File(MOVIE_SOURCE);
+            newFile.renameTo(dump);
+        }
+        catch(IOException e)
+                {
+                    System.out.println("Something went wrong");
+                }
+>>>>>>> a1b1fd024a8f26d28ec2d9cfc71f7ae562502e5e
     }
 
     /**
@@ -143,7 +176,7 @@ public class MovieDAO
      */
     private void updateMovie(Movie movie) throws IOException 
     {
-        File tmp = new File("data/tmp_movies.txt");
+        File tmp = new File(MOVIE_SOURCE);
         List<Movie> allMovies = getAllMovies();
         allMovies.removeIf((Movie t) -> t.getId() == movie.getId());
         allMovies.add(movie);
@@ -169,8 +202,7 @@ public class MovieDAO
     public Movie getMovie(int id) throws IOException
     {
         List<Movie> allMovies = new ArrayList<>();
-        String source = "data/movie_titles.txt";
-        File file = new File(source);
+        File file = new File(MOVIE_SOURCE);
 
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) //Using a try with resources!
         {
