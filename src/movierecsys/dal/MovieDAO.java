@@ -43,8 +43,7 @@ public class MovieDAO
     public List<Movie> getAllMovies() throws IOException
     {
         List<Movie> allMovies = new ArrayList<>();
-        String source = "data/movie_titles.txt";
-        File file = new File(source);
+        File file = new File(MOVIE_SOURCE);
 
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) //Using a try with resources!
         {
@@ -168,7 +167,7 @@ public class MovieDAO
      */
     private void updateMovie(Movie movie) throws IOException 
     {
-        File tmp = new File("data/tmp_movies.txt");
+        File tmp = new File(MOVIE_SOURCE);
         List<Movie> allMovies = getAllMovies();
         allMovies.removeIf((Movie t) -> t.getId() == movie.getId());
         allMovies.add(movie);
@@ -194,8 +193,7 @@ public class MovieDAO
     public Movie getMovie(int id) throws IOException
     {
         List<Movie> allMovies = new ArrayList<>();
-        String source = "data/movie_titles.txt";
-        File file = new File(source);
+        File file = new File(MOVIE_SOURCE);
 
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) //Using a try with resources!
         {
