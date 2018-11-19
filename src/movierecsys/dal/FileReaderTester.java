@@ -24,23 +24,10 @@ public class FileReaderTester
     public static void main(String[] args) throws IOException
     {
         MovieDAO movieDao = new MovieDAO();
-<<<<<<< HEAD
-<<<<<<< HEAD
-        Movie movie = new Movie(22, 0, "");
-        movieDao.deleteMovie(movie);
-        if ()
-        {
-            System.out.println("cannot find");
-        }
-=======
 //         
 //        Movie movie = new Movie(17774, 2015, "Django unchained");
 //        movieDao.deleteMovie(movie);
         
->>>>>>> a1b1fd024a8f26d28ec2d9cfc71f7ae562502e5e
-=======
-        
->>>>>>> parent of c24de87... useless change
         
 //        List<Movie> allMovies = movieDao.getAllMovies();
 //        for (Movie allMovy : allMovies)
