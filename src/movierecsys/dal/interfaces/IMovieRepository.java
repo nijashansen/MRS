@@ -3,19 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package movierecsys.dal;
+package movierecsys.dal.interfaces;
 
-import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 import movierecsys.be.Movie;
+import movierecsys.be.Rating;
 
 /**
  *
- * @author Nijas Hansen
+ * @author thor1
  */
-public interface IMovieRepository 
-{
+public interface IMovieRepository {
 
     /**
      * Creates a movie in the persistence storage.
@@ -32,16 +32,15 @@ public interface IMovieRepository
      *
      * @param movie The movie to delete.
      */
-    void deleteMovie(Movie movie) throws IOException;
+    void deleteMovie(Movie movie) throws FileNotFoundException, IOException;
 
     /**
      * Gets a list of all movies in the persistence storage.
      *
      * @return List of movies.
-     * @throws java.io.IOException
      */
     List<Movie> getAllMovies() throws IOException;
-    
+
     /**
      * Gets a the movie with the given ID.
      *
@@ -49,5 +48,16 @@ public interface IMovieRepository
      * @return A Movie object.
      */
     Movie getMovie(int id) throws IOException;
+
+    /**
+     * Updates the movie in the persistence storage to reflect the values in the
+     * given Movie object.
+     *
+     * @param movie The updated movie.
+     * @throws java.io.IOException
+     */
+    void updateMovie(Movie movie) throws IOException;
+    
+    
     
 }

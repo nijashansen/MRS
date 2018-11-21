@@ -9,8 +9,7 @@ package movierecsys.be;
  *
  * @author pgn
  */
-public class Rating
-{
+public class Rating {
 
     public static final int SUPER_BAD = -5;
     public static final int BAD = -3;
@@ -18,9 +17,7 @@ public class Rating
     public static final int GOOD = 3;
     public static final int SUPER_GOOD = 5;
 
-    private final int movieId;
-    private final int userId;
-    private int rating;
+    private int rating, movieId, userId;
 
     /**
      * Constructs a new rating.
@@ -30,16 +27,11 @@ public class Rating
      * @param rating The value of the rating. Only the constants of the Rating
      * class are allowed values.
      */
-    public Rating(int movie, int user, int rating)
-    {
-        this.movieId = movie;
-        this.userId = user;
+    public Rating(int movieId, int userId, int rating) {
+        this.movieId = movieId;
+        this.userId = userId;
         this.rating = rating;
-    }
 
-    public Rating(String movie, int user, int id)
-    {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -48,9 +40,21 @@ public class Rating
      *
      * @param rating The rating to set.
      */
-    public void setRating(int rating)
-    {
+    public void setRating(int rating) {
+
         this.rating = rating;
+
+    }
+
+    private boolean isLegalRating(int rating) {
+        if (rating == -5 || rating == - 3 || rating == 1 || rating == 3 || rating == 5) {
+            return true;
+        } else {
+
+        }
+        System.out.println("Choose one of the folloing scores:" + " " + SUPER_BAD + " " + BAD + " " + NEUTRAL + " " + GOOD + " " + SUPER_GOOD);
+        return false;
+
     }
 
     /**
@@ -58,8 +62,7 @@ public class Rating
      *
      * @return A movie
      */
-    public int getMovie()
-    {
+    public int getMovie() {
         return movieId;
     }
 
@@ -68,8 +71,7 @@ public class Rating
      *
      * @return A user.
      */
-    public int getUser()
-    {
+    public int getUser() {
         return userId;
     }
 
@@ -78,11 +80,13 @@ public class Rating
      *
      * @return An integer.
      */
-    public int getRating()
-    {
+    public int getRating() {
         return rating;
     }
 
-    
+    @Override
+    public String toString() {
+        return getMovie() + "," + getUser() + "," + rating;
+    }
 
 }
