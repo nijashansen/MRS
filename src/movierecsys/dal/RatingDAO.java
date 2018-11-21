@@ -145,7 +145,8 @@ public class RatingDAO
     public int getRatings(User user) throws IOException
     {
         List<Rating> allRates = new ArrayList<>();
-        File file = new File(RATING_SOURCE);
+        String source = "data/Ratings.txt";
+        File file = new File(source);
 
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) //Using a try with resources!
         {

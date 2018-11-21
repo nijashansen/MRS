@@ -44,7 +44,8 @@ public class MovieDAO implements IMovieRepository
     public List<Movie> getAllMovies() throws IOException
     {
         List<Movie> allMovies = new ArrayList<>();
-        File file = new File(MOVIE_SOURCE);
+        String source = "data/movie_titles.txt";
+        File file = new File(source);
 
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) //Using a try with resources!
         {
@@ -170,7 +171,7 @@ public class MovieDAO implements IMovieRepository
      */
     private void updateMovie(Movie movie) throws IOException 
     {
-        File tmp = new File(MOVIE_SOURCE);
+        File tmp = new File("data/tmp_movies.txt");
         List<Movie> allMovies = getAllMovies();
         allMovies.removeIf((Movie t) -> t.getId() == movie.getId());
         allMovies.add(movie);
@@ -197,7 +198,8 @@ public class MovieDAO implements IMovieRepository
     public Movie getMovie(int id) throws IOException
     {
         List<Movie> allMovies = new ArrayList<>();
-        File file = new File(MOVIE_SOURCE);
+        String source = "data/movie_titles.txt";
+        File file = new File(source);
 
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) //Using a try with resources!
         {
