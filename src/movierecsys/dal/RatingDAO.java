@@ -11,6 +11,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
@@ -18,7 +20,6 @@ import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import movierecsys.be.Movie;
 import movierecsys.be.Rating;
 import movierecsys.be.User;
 
@@ -28,8 +29,8 @@ import movierecsys.be.User;
  */
 public class RatingDAO
 {
-    private static final String RATING_SOURCE = "data/ratings.txt";
-    
+    private static final String RATING_SOURCE = "data/user_ratings";
+    private static final int RECORD_SIZE = Integer.BYTES * 3;
     /**
      * Persists the given rating.
      * @param rating the rating to persist.
@@ -118,29 +119,23 @@ public class RatingDAO
     public List<Rating> getAllRatings() throws IOException
     {
         List<Rating> allRatings = new ArrayList<>();
-        String source = "data/ratings.txt";
-        File file = new File(source);
-
-        try (BufferedReader reader = new BufferedReader(new FileReader(file))) //Using a try with resources!
+        byte[] all = Files.readAllBytes(new File(RATING_SOURCE).toPath()); //I get all records as binary data!
+        for (int i = 0; i < all.length; i += RECORD_SIZE)
         {
-            String line;
-            while ((line = reader.readLine()) != null)
-            {
-                if (!line.isEmpty())
-                {
-                    try
-                    {
-                        Rating rat = stringArrayToRating(line);
-                        allRatings.add(rat);
-                    } catch (Exception ex)
-                    {
-                        //Do nothing. Optimally we would log the error.
-                    }
-                }
-            }
+            int movieId = ByteBuffer.wrap(all, i, Integer.BYTES).order(ByteOrder.BIG_ENDIAN).getInt();
+            int userId = ByteBuffer.wrap(all, i + Integer.BYTES, Integer.BYTES).order(ByteOrder.BIG_ENDIAN).getInt();
+            int rating = ByteBuffer.wrap(all, i + Integer.BYTES * 2, Integer.BYTES).order(ByteOrder.BIG_ENDIAN).getInt();
+            Rating r = new Rating(movieId, userId, rating);
+            allRatings.add(r);
         }
+        Collections.sort(allRatings, (Rating o1, Rating o2) ->
+        {
+            int movieCompare = Integer.compare(o1.getMovie(), o2.getMovie());
+            return movieCompare == 0 ? Integer.compare(o1.getUser(), o2.getUser()) : movieCompare;
+        });
         return allRatings;
     }
+    
     
     /**
      * Get all ratings from a specific user.

@@ -7,13 +7,12 @@ package movierecsys.gui.controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
-import static javafx.collections.FXCollections.observableArrayList;
-import static javafx.collections.FXCollections.observableArrayList;
-import static javafx.collections.FXCollections.observableArrayList;
 import static javafx.collections.FXCollections.observableArrayList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -45,9 +44,17 @@ public class MovieRecController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        MovieDAO movieDao = new MovieDAO();
+        MovieDAO mvDAO = new MovieDAO();
         //observableArrayList<Movie> list = new FXCollections.observableArrayList<>();
-        
+        List<Movie> listmv = new ArrayList<>();
+        try
+        {
+            listmv = mvDAO.getAllMovies();
+            lstMovies.getItems().addAll(listmv);
+        } catch (IOException ex)
+        {
+            Logger.getLogger(MovieRecController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

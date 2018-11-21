@@ -24,7 +24,7 @@ import movierecsys.be.User;
  */
 public class UserDAO
 {
-    private final String USER_SOURCE = "users.txt";
+    private final String USER_SOURCE = "data/users.txt";
     /**
      * Gets a list of all known users.
      * @return List of users.
@@ -124,5 +124,7 @@ public class UserDAO
         Files.copy(tmp.toPath(), new File(USER_SOURCE).toPath(), StandardCopyOption.REPLACE_EXISTING);
         Files.delete(tmp.toPath());
     }
+
+    
     
 }
