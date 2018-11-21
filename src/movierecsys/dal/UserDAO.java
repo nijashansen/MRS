@@ -14,11 +14,15 @@ import movierecsys.be.User;
  */
 public class UserDAO
 {
+<<<<<<< HEAD
 
     private final String USER_SOURCE = "data/users.txt";
 
     
 
+=======
+    
+>>>>>>> parent of a1b1fd0... userDAO MADE
     /**
      * Gets a list of all known users.
      * @return List of users.

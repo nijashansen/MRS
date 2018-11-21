@@ -13,12 +13,15 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import javafx.collections.FXCollections;
 import static javafx.collections.FXCollections.observableArrayList;
 =======
 >>>>>>> parent of a1b1fd0... userDAO MADE
 =======
 >>>>>>> parent of 995e5b2... changed some stuff
+=======
+>>>>>>> parent of a1b1fd0... userDAO MADE
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
@@ -49,6 +52,7 @@ public class MovieRecController implements Initializable
     {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         MovieDAO mvDAO = new MovieDAO();
         //observableArrayList<Movie> list = new FXCollections.observableArrayList<>();
         List<Movie> listmv = new ArrayList<>();
@@ -66,6 +70,10 @@ public class MovieRecController implements Initializable
 =======
        
 >>>>>>> parent of 995e5b2... changed some stuff
+=======
+        MovieDAO movieDao = new MovieDAO();
+        
+>>>>>>> parent of a1b1fd0... userDAO MADE
         
 >>>>>>> parent of a1b1fd0... userDAO MADE
     }
