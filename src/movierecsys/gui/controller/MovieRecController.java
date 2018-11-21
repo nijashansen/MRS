@@ -12,8 +12,11 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+<<<<<<< HEAD
 import javafx.collections.FXCollections;
 import static javafx.collections.FXCollections.observableArrayList;
+=======
+>>>>>>> parent of a1b1fd0... userDAO MADE
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
@@ -44,6 +47,7 @@ public class MovieRecController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
+<<<<<<< HEAD
         MovieDAO mvDAO = new MovieDAO();
         //observableArrayList<Movie> list = new FXCollections.observableArrayList<>();
         List<Movie> listmv = new ArrayList<>();
@@ -55,6 +59,11 @@ public class MovieRecController implements Initializable
         {
             Logger.getLogger(MovieRecController.class.getName()).log(Level.SEVERE, null, ex);
         }
+=======
+        MovieDAO movieDao = new MovieDAO();
+        
+        
+>>>>>>> parent of a1b1fd0... userDAO MADE
     }
 
 }

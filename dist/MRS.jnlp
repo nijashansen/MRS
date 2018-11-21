@@ -8,7 +8,11 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+<<<<<<< HEAD
     <jar href="MRS.jar" size="26743" download="eager" />
+=======
+    <jar href="MRS.jar" size="17884" download="eager" />
+>>>>>>> parent of a1b1fd0... userDAO MADE
     <jar href="lib\junit-4.12.jar" size="316791" download="eager" />
     <jar href="lib\sqljdbc42.jar" size="653996" download="eager" />
   </resources>
